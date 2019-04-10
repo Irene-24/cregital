@@ -1,0 +1,98 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    background: url('./img/boat.jpg') fixed no-repeat;
+    background-size: cover;
+    text-align: center;
+    position: relative;
+    
+}
+
+h1
+{
+    color:white;
+    margin:10vh;
+    font-size: 3.5em;
+    text-shadow: 1px 1px 2px #023323, 0 0 25px #05d6b3, 0 0 5px #90cff8;
+}
+
+input
+{
+    padding: 10px ;
+    display: block;
+    margin: 10px auto;
+    width:80vw;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    
+}
+
+input:focus
+{
+    box-shadow: 0 0 20px #023323;
+}
+
+button
+{
+    padding: 10px;
+    background: #72e7de;
+    width:40vw;
+    cursor: pointer;
+    color: white;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    margin: 20px  auto;
+}
+
+button:hover
+{
+    box-shadow: 0 0 10px #023323;
+}
+
+footer
+{
+    position: fixed;
+    padding: 20px;
+    bottom: 0;
+    background: #72e7de;
+    width:100%;
+    color: white;
+    font-size: 0.8em;
+    display: grid;
+    grid-template-columns: repeat(2,1fr)
+
+}
+
+span
+{
+    padding: 5px;
+}
+
+@media (min-width:768px)
+{
+    input
+    {
+        width:60vw;
+    }
+
+    button
+    {
+        width:20vw;
+    }
+
+    footer
+    {
+        font-size: initial;
+    }
+
+}

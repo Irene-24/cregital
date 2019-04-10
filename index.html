@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./style.css">   
+    <link rel="manifest" href="./manifest.json">
+    <title>Photo Viewer</title>
+</head>
+<body>
+
+    <header>
+
+
+        <h1>Photo Viewer</h1>
+
+        <button class="add-button">Add to home screen</button>
+    
+    </header>
+
+    <form action="./results.html" method="GET">
+        <input type="text" placeholder="Enter keyword here...">
+        <button type="submit">Search</button>
+        
+    </form>
+
+    <footer>
+        <span> Copyright &copy; Irene 2019 </span>
+       <span> -Photo by <a href="https://www.pexels.com/@asadphotography"> Ibrahim Asad from Pexels</a></span>
+    </footer>
+    
+    <script>
+    
+    const form = document.querySelector("form");
+    const input = document.querySelector("input");
+
+    let query = null ;
+    form.addEventListener('submit', e =>
+    {
+        query = input.value;
+        localStorage.setItem('query', query);
+
+        if('serviceWorker' in navigator)
+    {
+        try
+        {
+            navigator.serviceWorker.register('sw.js'); 
+        }
+        catch(err)
+        {
+            console.log('SW not found');
+        }
+    }
+
+
+    },false);
+
+
+    let deferredPrompt;
+const addBtn = document.querySelector('.add-button');
+addBtn.style.display = 'none';
+
+window.addEventListener('beforeinstallprompt', (e) => 
+{
+
+  e.preventDefault();
+  deferredPrompt = e;
+  addBtn.style.display = 'block';
+
+  addBtn.addEventListener('click', (e) => 
+  {
+    
+    addBtn.style.display = 'none';
+    deferredPrompt.prompt();
+    deferredPrompt.userChoice.then((choiceResult) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the A2HS prompt');
+        } else {
+          console.log('User dismissed the A2HS prompt');
+        }
+        deferredPrompt = null;
+      });
+  });
+});
+
+
+    </script>
+    
+</body>
+</html>
